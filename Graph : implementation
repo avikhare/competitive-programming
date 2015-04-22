@@ -1,0 +1,64 @@
+// Language : c++ 4.3.2
+// Author : Avinash Khare
+// feel free to share, though small courtsy will not hurt.
+// below code is for directed graph, can be easily converted into undirected graph.
+
+#include<iostream>
+#include<vector>
+using namespace std;
+typedef vector<int> vi;    // all the necessary inclusion of header files and some typedef to make life easy :D
+
+int main()                                                                      
+{
+	int v_cnt,e_cnt;               // count of vertices and edges
+	
+	cout<<"Enter the number of vertices and edges : ";
+	cin>>v_cnt>>e_cnt;
+	
+	vector<vi> graph(v_cnt);       // list reprsentation using vector of vector.
+	
+	for(int i=0;i<e_cnt;i++)
+	{
+		int x,y;
+		cin>>x>>y;                 // assuming vertices to be indexed from 0 to n-1.
+		graph[x].push_back(y);       
+	}
+	
+	for(int i=0;i<v_cnt;i++)       // print the list
+	{ cout<<" vertices adjacent to vertex "<<i<<" : ";
+		for(vi::iterator v=graph[i].begin();v!=graph[i].end();v++)
+		cout<<*v<<" ";
+		cout<<endl;
+	}
+	
+	
+	
+    cout<<"Enter the number of vertices and edges : ";
+	cin>>v_cnt>>e_cnt;
+	
+	int graph_mat[v_cnt][v_cnt];               // an adjacency matrices of nxn.
+	
+	for(int i=0;i<v_cnt;i++)
+	{ 
+	  for(int j=0;j<v_cnt;j++)
+	  graph_mat[i][j]=0;               // initializing it with 0.
+	}
+	
+	for(int i=0;i<e_cnt;i++)
+	{
+		int x,y;
+		cin>>x>>y;
+		graph_mat[x][y]=1;             // marking the cell(x,y) with 1 to represent path from x to y.
+	}
+	
+	cout<<" Adjacency matrices :"<<endl;
+	for(int i=0;i<v_cnt;i++)
+	{ 
+	  for(int j=0;j<v_cnt;j++)
+	  cout<<  graph_mat[i][j]<<" ";
+	  cout<<endl;               
+	}
+	
+	
+	
+}
